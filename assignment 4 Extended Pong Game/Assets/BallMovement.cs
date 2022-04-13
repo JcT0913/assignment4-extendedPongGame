@@ -35,12 +35,14 @@ public class BallMovement : MonoBehaviour
     public void ResetBallPosition()
     {
         transform.position = new Vector3(-4.4f, 0, 0);
+        // call StartOfBall() here will make speed of ball increases heavily
         //StartOfBall();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         List<Transform> list;
+        // comment the following line to avoid ball stop detecting collisions
         //GetComponent<Rigidbody>().detectCollisions = false;
         BallMovement.repositoryDict.TryGetValue(collision.transform.tag, out list);
 
@@ -56,10 +58,37 @@ public class BallMovement : MonoBehaviour
             list = new List<Transform>();
         }
 
-        list.Add(collision.transform);
+        //list.Add(collision.transform);
+
+        if (!ExistInDict(repositoryDict, collision.transform.tag, collision.transform))
+        {
+            list.Add(collision.transform);
+        }
+
         BallMovement.repositoryDict.Remove(collision.transform.tag);
         BallMovement.repositoryDict.Add(collision.transform.tag, list);
+
         //Debug.Log(list.Count);
-        //Debug.Log(elementsInAllListsCount);
+        Debug.Log(elementsInAllListsCount);
+    }
+
+    // detect whether a key-value pair already exists in the dictionary
+    private bool ExistInDict(Dictionary<string, List<Transform>> dict, string key, Transform value)
+    {
+        if (!dict.ContainsKey(key))
+        {
+            return false;
+        }
+        else
+        {
+            if(!dict[key].Contains(value))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
