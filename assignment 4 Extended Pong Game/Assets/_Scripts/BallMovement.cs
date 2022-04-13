@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    public float speed = 4;
+    public float speed = 3;
     public static Dictionary<string, List<Transform>> repositoryDict = new Dictionary<string, List<Transform>>();
 
     // Start is called before the first frame update
@@ -14,6 +14,11 @@ public class BallMovement : MonoBehaviour
         List<Transform> temp = new List<Transform>();
         temp.Add(transform);
         repositoryDict.Add(transform.tag, temp);
+
+        //foreach(GameObject g in GameObject.FindGameObjectsWithTag("Visualizer"))
+        //{
+        //    g.SendMessage("UpdateRepositoryDisplay");
+        //}
 
         StartOfBall();
     }
@@ -40,7 +45,7 @@ public class BallMovement : MonoBehaviour
     public void ResetBallPosition()
     {
         transform.position = new Vector3(-4.4f, 0, 0);
-        // call StartOfBall() here will make speed of ball increases heavily
+        // call StartOfBall() here will make speed of ball increases
         //StartOfBall();
     }
 
@@ -69,13 +74,18 @@ public class BallMovement : MonoBehaviour
         if (!ExistInDict(repositoryDict, collision.transform.tag, collision.transform))
         {
             list.Add(collision.transform);
+
+            //foreach (GameObject g in GameObject.FindGameObjectsWithTag("Visualizer"))
+            //{
+            //    g.SendMessage("UpdateRepositoryDisplay");
+            //}
         }
 
         BallMovement.repositoryDict.Remove(collision.transform.tag);
         BallMovement.repositoryDict.Add(collision.transform.tag, list);
 
         //Debug.Log(list.Count);
-        //Debug.Log(elementsInAllListsCount);
+        Debug.Log(elementsInAllListsCount);
     }
 
     // detect whether a key-value pair already exists in the dictionary

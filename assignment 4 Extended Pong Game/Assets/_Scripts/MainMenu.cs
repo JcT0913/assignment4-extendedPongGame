@@ -20,8 +20,10 @@ public class MainMenu : MonoBehaviour
     public void PlayButton()
     {
         Debug.Log("Play Game");
+        
         // another method to load scene
         // EditorSceneManager.LoadScene(EditorSceneManager.GetActiveScene().buildIndex + 1);
+        
         EditorSceneManager.LoadScene(1);
     }
 
