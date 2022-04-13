@@ -44,6 +44,7 @@ public class BallMovement : MonoBehaviour
         //StartOfBall();
     }
 
+    // add key-value pairs to the dictionary
     private void OnCollisionEnter(Collision collision)
     {
         List<Transform> list;
@@ -74,7 +75,7 @@ public class BallMovement : MonoBehaviour
         BallMovement.repositoryDict.Add(collision.transform.tag, list);
 
         //Debug.Log(list.Count);
-        Debug.Log(elementsInAllListsCount);
+        //Debug.Log(elementsInAllListsCount);
     }
 
     // detect whether a key-value pair already exists in the dictionary
