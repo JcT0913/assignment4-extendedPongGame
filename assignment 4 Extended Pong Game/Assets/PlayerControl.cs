@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float speed = 1;
+    public Transform ball;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,11 @@ public class PlayerControl : MonoBehaviour
         else if (Input.GetKey(KeyCode.S) && transform.position.y > -4.61f)
         {
             transform.Translate(new Vector3(0, speed * -0.025f, 0));
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            ball.SendMessage("ResetBallPosition");
         }
     }
 }

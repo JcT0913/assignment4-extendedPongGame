@@ -15,7 +15,7 @@ public class BallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(GetComponent<Rigidbody>().velocity);
     }
 
     public void StartOfBall()
@@ -28,5 +28,11 @@ public class BallMovement : MonoBehaviour
 
         rigidbody.velocity = new Vector3(0, 0, 0);
         rigidbody.AddForce(force.normalized * speed);
+    }
+
+    public void ResetBallPosition()
+    {
+        transform.position = new Vector3(-4.4f, 0, 0);
+        //StartOfBall();
     }
 }
