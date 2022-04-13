@@ -10,6 +10,11 @@ public class BallMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // add the ball to the dictionary
+        List<Transform> temp = new List<Transform>();
+        temp.Add(transform);
+        repositoryDict.Add(transform.tag, temp);
+
         StartOfBall();
     }
 
